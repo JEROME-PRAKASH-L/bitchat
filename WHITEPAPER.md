@@ -302,6 +302,18 @@ Receiving peers collect all fragments and reassemble them in the correct order b
 *   **Identity Binding:** While the Noise handshake authenticates the cryptographic keys, binding those keys to a human-readable nickname is handled at the application layer. Users must verify fingerprints out-of-band to prevent man-in-the-middle attacks.
 *   **Traffic Analysis:** The use of fixed-size padding for all packets helps to obscure the exact nature and content of the communication, making it harder for a network-level adversary to infer information based on message size.
 
+### 8.1. Forward Secrecy
+
+The Noise `XX` pattern provides forward secrecy by deriving session keys from ephemeral Diffie-Hellman exchanges. Even if a peer's long-term static key is compromised, an attacker cannot decrypt past messages without also compromising the ephemeral keys from the specific session, which are discarded after use.
+
+### 8.2. Perfect Forward Secrecy in Mesh Networks
+
+In the context of multi-hop mesh networks, forward secrecy is maintained at each hop. While relay nodes do not decrypt content (they relay at the Noise message level), each direct connection between two peers maintains its own forward-secret session keys.
+
+### 8.3. Key Derivation
+
+All session keys are derived using the HKDF (HMAC-based Key Derivation Function) with SHA-256, ensuring cryptographic separation between handshake keys and transport keys.
+
 ---
 
 ## 9. Conclusion

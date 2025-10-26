@@ -52,6 +52,11 @@ class NoiseSession {
                 throw NoiseSessionError.invalidState
             }
             
+            // Only initiator can start the handshake
+            guard role == .initiator else {
+                throw NoiseSessionError.invalidState
+            }
+            
             // For XX pattern, we don't need remote static key upfront
             handshakeState = NoiseHandshakeState(
                 role: role,
@@ -63,15 +68,9 @@ class NoiseSession {
             
             state = .handshaking
             
-            // Only initiator writes the first message
-            if role == .initiator {
-                let message = try handshakeState!.writeMessage()
-                sentHandshakeMessages.append(message)
-                return message
-            } else {
-                // Responder doesn't send first message in XX pattern
-                return Data()
-            }
+            let message = try handshakeState!.writeMessage()
+            sentHandshakeMessages.append(message)
+            return message
         }
     }
     

@@ -117,6 +117,49 @@ For detailed protocol documentation, see the [Technical Whitepaper](WHITEPAPER.m
 Want to try this on macos: `just run` will set it up and run from source.
 Run `just clean` afterwards to restore things to original state for mobile app building and development.
 
+### Installation Requirements
+
+Before setting up BitChat, ensure you have the following installed:
+
+- **macOS 13.0+** or **iOS 16.0+**
+- **Xcode 15.0+** (for development)
+- **Homebrew** (for installing `just` command runner)
+- **Git** (for cloning the repository)
+
+### Step-by-Step Installation Guide
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/JEROME-PRAKASH-L/bitchat.git
+   cd bitchat
+   ```
+
+2. **Install Xcode Command Line Tools** (if not already installed)
+   ```bash
+   xcode-select --install
+   ```
+
+3. **Install Homebrew** (if not already installed)
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+4. **Set Up for Development**
+   ```bash
+   cp Configs/Local.xcconfig.example Configs/Local.xcconfig
+   # Edit Configs/Local.xcconfig with your Team ID
+   ```
+
+5. **Run the Application**
+   - **Via Xcode**: Open `bitchat.xcodeproj` and select your target (iOS or macOS)
+   - **Via Command Line**: Use `just run` (after installing `just` with `brew install just`)
+
+### Troubleshooting Installation
+
+- **Xcode not found**: Install Xcode from the App Store or run `xcode-select --install`
+- **Bundle ID conflicts**: Ensure your Team ID is correctly set in `Configs/Local.xcconfig`
+- **Entitlements errors**: Verify that all entitlements files have been updated with your Bundle ID
+
 ## Localization
 
 - Base app resources live under `bitchat/Localization/Base.lproj/`. Add new copy to `Localizable.strings` and plural rules to `Localizable.stringsdict`.
