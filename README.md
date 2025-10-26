@@ -92,6 +92,14 @@ Private messages use **intelligent transport selection**:
 
 For detailed protocol documentation, see the [Technical Whitepaper](WHITEPAPER.md).
 
+## Deployment & Hosting
+
+**Looking to host or deploy BitChat?** See the comprehensive [**Deployment Guide**](DEPLOYMENT.md) for:
+- Running BitChat locally for development
+- Distributing via App Store or TestFlight
+- Running your own Nostr relay (optional)
+- Enterprise deployment options
+
 ## Setup
 
 ### Option 1: Using Xcode
